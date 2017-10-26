@@ -4,14 +4,12 @@ import rospy
 import rosbag
 import argparse
 
-from bond.msg import Status
 from sensor_msgs.msg import Image, CompressedImage, PointCloud2, CameraInfo
 import tf
 
 
 # Mapping from topic name to message type, add more as needed
 topics = [
-    ("/kinect2/bond", Status),
     ("/kinect2/hd/camera_info", CameraInfo),
     ("/kinect2/hd/image_color", Image),
     ("/kinect2/hd/image_color/compressed", CompressedImage),
