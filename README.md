@@ -1,2 +1,2 @@
-# kinect2_republisher
-Republishes kinect2 messages from a rosbag file
+# rosbag_republisher
+Republishes any messages found in a rosbag file
