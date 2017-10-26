@@ -4,6 +4,7 @@ import rospy
 import rosbag
 import argparse
 
+import sys
 from sensor_msgs.msg import Image, CompressedImage, PointCloud2, CameraInfo
 import tf
 
@@ -75,7 +76,12 @@ def sort_msgs(msgs):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("bag_file", help="Filepath to bagfile")
-    return parser.parse_args()
+
+    args_list = " ".join(sys.argv[1:]).replace("__", "--").replace(
+        ":=", " ").split(" ")
+
+    args, _ = parser.parse_known_args(args_list)
+    return args
 
 
 def main():
