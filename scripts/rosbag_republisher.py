@@ -79,12 +79,12 @@ def main():
         t_start = rospy.Time.now()
 
         for topic, msg, t in sorted_messages:
-            if topic in publishers:
-                publish_msg(publishers[topic], msg)
             if topic == "/tf":
                 for transform_msg in msg.transforms:
                     publish_transform(tf_publisher, transform_msg)
-
+            elif topic in publishers:
+                publish_msg(publishers[topic], msg)
+            
             if rospy.is_shutdown():
                 break
 
@@ -92,7 +92,7 @@ def main():
             previous_t = t
 
         # Make sure the time taken is roughly the time that is in the bag. This program tends to run a bit longer
-        print("Sent all messages in {} seconds".format((rospy.Time.now() - t_start).to_sec()))
+        print("Sent all messages in {} seconds, time is now: {}".format((rospy.Time.now() - t_start).to_sec(), rospy.Time.now()))
         previous_t = sorted_messages[0][2]
 
 
