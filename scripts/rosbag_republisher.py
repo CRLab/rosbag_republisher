@@ -84,15 +84,15 @@ def main():
                     publish_transform(tf_publisher, transform_msg)
             elif topic in publishers:
                 publish_msg(publishers[topic], msg)
-            
+
             if rospy.is_shutdown():
                 break
 
             rospy.sleep(t - previous_t)
             previous_t = t
 
-        # Make sure the time taken is roughly the time that is in the bag. This program tends to run a bit longer
-        print("Sent all messages in {} seconds, time is now: {}".format((rospy.Time.now() - t_start).to_sec(), rospy.Time.now()))
+        # Make sure the time taken is roughly the time that is in the bag. This program tends to run a bit longer\
+        rospy.loginfo("[rosbag_republisher] Sent all messages in {} seconds".format((rospy.Time.now() - t_start).to_sec()))
         previous_t = sorted_messages[0][2]
 
 
